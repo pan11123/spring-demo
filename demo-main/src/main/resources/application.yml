@@ -1,0 +1,68 @@
+# 服务器配置
+server:
+  # 端口
+  port: 8080
+
+# spring配置
+spring:
+  # 应用信息
+  application: 
+    # 应用名称
+    name: spring-demo
+  # 环境配置
+  profiles:
+    # 当前环境
+    active: dev
+  # 数据库配置
+  datasource:
+    # 数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 数据库驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库连接URL
+    url: jdbc:mysql://${demo.datasource.host}:${demo.datasource.port}/${demo.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    # 数据库用户名
+    username: ${demo.datasource.username}
+    # 数据库密码
+    password: ${demo.datasource.password}
+    # Druid连接池配置
+    druid:
+      # 初始连接数
+      initial-size: 5
+      # 最小连接池数量
+      min-idle: 10
+      # 最大连接池数量
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      # 配置检测连接是否有效
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+# MyBatis配置
+mybatis:
+  # mapper文件位置
+  mapper-locations: classpath:mapper/*.xml
+  # 实体类包路径
+  type-aliases-package: com.nexa.demo.entity
+
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: satoken
+  # token有效期，单位s 默认30天, -1代表永不过期
+  timeout: 2592000
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # token风格
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: false
