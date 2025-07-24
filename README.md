@@ -62,7 +62,9 @@ mvn spring-boot:run -pl demo-main
 ### 3. 访问项目
 
 - 项目地址: http://localhost:8080
-- API文档: http://localhost:8080/doc.html (如果配置了Knife4j)
+- **Knife4j API文档**: http://localhost:8080/doc.html
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
 
 ## 配置说明
 
@@ -87,6 +89,37 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.nexa.demo.entity
 ```
+
+### Knife4j API文档配置
+
+项目已集成Knife4j 4.4.0，提供美观的API文档界面：
+
+```yaml
+# Knife4j配置
+knife4j:
+  enable: true
+  production: false
+  basic:
+    enable: false
+    username: admin
+    password: 123456
+
+# SpringDoc配置
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+```
+
+**功能特性**:
+- 📖 美观的API文档界面
+- 🔍 在线API测试功能
+- 📋 API分组管理（用户管理、系统管理等）
+- 🔒 支持认证测试（Sa-Token集成）
+- 📱 响应式设计，支持移动端访问
 
 ## 常见问题解决方案
 
@@ -135,12 +168,38 @@ mybatis:
 - `com.nexa.demo.mapper` - 数据访问接口
 - `com.nexa.demo.entity` - 实体类
 
+## API接口说明
+
+### 用户管理接口
+
+| 接口 | 方法 | 路径 | 说明 |
+|------|------|------|------|
+| 用户登录 | POST | `/user/login` | 用户登录认证 |
+| 检查登录状态 | GET | `/user/isLogin` | 检查当前用户登录状态 |
+| 用户退出登录 | POST | `/user/logout` | 退出当前用户登录 |
+
+### 统一返回格式
+
+所有API接口都使用统一的返回格式：
+
+```json
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": "具体数据",
+  "timestamp": 1642665600000
+}
+```
+
 ## 项目状态
 
-✅ 项目基础架构搭建完成  
-✅ 数据源配置完成  
-✅ MyBatis集成完成  
-⚠️ 需要创建具体的业务功能模块  
+✅ 项目基础架构搭建完成
+✅ 数据源配置完成
+✅ MyBatis集成完成
+✅ **Knife4j API文档集成完成**
+✅ **Sa-Token权限认证集成完成**
+✅ **统一返回结果格式完成**
+⚠️ 需要创建具体的业务功能模块
 
 ## 联系方式
 
