@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-这是一个基于Spring Boot 3.2.5的多模块Maven项目，采用分层架构设计，包含用户管理功能。
+这是一个基于Spring Boot 3.2.5的多模块Maven项目，采用分层架构设计，包含一个简单的示例。
 
 ## 项目架构
 
@@ -99,27 +99,20 @@ mybatis:
 knife4j:
   enable: true
   production: false
-  basic:
-    enable: false
-    username: admin
-    password: 123456
 
 # SpringDoc配置
 springdoc:
-  api-docs:
-    path: /v3/api-docs
-    enabled: true
-  swagger-ui:
-    path: /swagger-ui.html
-    enabled: true
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.nexa.demo.controller
 ```
 
 **功能特性**:
 - 📖 美观的API文档界面
 - 🔍 在线API测试功能
 - 📋 API分组管理（用户管理、系统管理等）
-- 🔒 支持认证测试（Sa-Token集成）
-- 📱 响应式设计，支持移动端访问
+- 🔒 支持认证测试（Sa-Token集成）(目前实现简单的登录功能,后续需要具体实现)
 
 ## 常见问题解决方案
 
@@ -139,17 +132,6 @@ springdoc:
 **解决方案**:
 1. 在启动类添加 `@MapperScan("com.nexa.demo.mapper")` 注解
 2. 确保mapper接口在正确的包路径下
-
-### 3. MySQL驱动版本问题
-
-**警告信息**: `mysql:mysql-connector-java has been relocated to com.mysql:mysql-connector-j`
-
-**解决方案**: 使用新的MySQL驱动坐标：
-```xml
-<dependency>
-    <groupId>com.mysql</groupId>
-    <artifactId>mysql-connector-j</artifactId>
-</dependency>
 ```
 
 ## 开发规范
@@ -193,17 +175,20 @@ springdoc:
 
 ## 项目状态
 
-✅ 项目基础架构搭建完成
-✅ 数据源配置完成
-✅ MyBatis集成完成
-✅ **Knife4j API文档集成完成**
-✅ **Sa-Token权限认证集成完成**
-✅ **统一返回结果格式完成**
-⚠️ 需要创建具体的业务功能模块
+✅ 项目基础架构搭建完成  
+✅ 数据源配置完成  
+✅ MyBatis集成完成  
+✅ **Knife4j API文档集成完成**  
+✅ **Sa-Token权限认证集成完成**  
+✅ **统一返回结果格式完成**  
+✅ **详细API接口文档完善**  
+✅ **项目配置说明补充完整**  
+⚠️ 需要创建更多的业务功能模块  
+⚠️ 需要完善单元测试
 
 ## 联系方式
 
-- 作者: nexa
+- 作者: Nexa
 - 创建时间: 2025/6/29
 
 ---
