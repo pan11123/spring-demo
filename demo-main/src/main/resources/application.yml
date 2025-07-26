@@ -39,11 +39,6 @@ spring:
       time-between-eviction-runs-millis: 60000
       # 配置一个连接在池中最小生存的时间，单位是毫秒
       min-evictable-idle-time-millis: 300000
-      # 配置检测连接是否有效
-      validation-query: SELECT 1 FROM DUAL
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
 
 # MyBatis配置
 mybatis:
@@ -67,14 +62,18 @@ sa-token:
   # 是否输出操作日志
   is-log: false
 
+# springdoc-openapi项目配置
+springdoc:
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.nexa.demo.controller
+
 # Knife4j配置
 knife4j:
   # 是否启用Knife4j增强功能
   enable: true
   # 生产环境屏蔽
   production: false
-  # 基础认证
-  basic:
-    enable: false
-    username: admin
-    password: 123456
+
+

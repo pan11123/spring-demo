@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 /**
  * 用户实体类
  *
- * @Author: nexa
+ * @Author: Nexa
  * @Date: 2025/6/29 19:04
  */
 @Data

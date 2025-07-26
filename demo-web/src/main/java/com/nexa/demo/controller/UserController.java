@@ -58,4 +58,5 @@ public class UserController {
         StpUtil.logout();
         return Result.success("退出登录成功");
     }
+
 }

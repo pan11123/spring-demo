@@ -11,7 +11,7 @@ import lombok.Data;
  * @Date: 2025/6/29 17:05
  */
 @Data
-@Schema(description = "登录参数", requiredProperties = {"username", "password"})
+@Schema(description = "登录参数")
 public class LoginDTO {
 
     @Schema(description = "用户名", example = "admin", minLength = 3, maxLength = 20)
